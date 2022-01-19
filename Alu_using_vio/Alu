@@ -1,0 +1,46 @@
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 07.10.2021 11:52:25
+// Design Name: 
+// Module Name: ALU
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module ALU(
+    input [7:0] A,
+    input [7:0] B,
+    input [2:0] S,
+    output reg [7:0] YH,
+    output reg [7:0] YL
+    ); 
+    
+    always @(A,B,S)
+    begin 
+    case(S)
+    3'b000:  {YH,YL}=A+B; 
+    3'b001:  {YH,YL}=A-B;
+    3'b010:  {YH,YL}=A*B;
+    3'b011:  {YH,YL}=A+1; 
+    3'b100:  {YH,YL}=A<<B;
+    3'b101:  {YH,YL}=A&B;
+    3'b110:  {YH,YL}=A|B;
+    3'b111:  {YH,YL}=A^B; 
+    default: {YH,YL}=0;
+    endcase
+    
+    end
+endmodule
